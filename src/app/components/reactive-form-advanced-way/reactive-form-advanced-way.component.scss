@@ -1,0 +1,91 @@
+.container-content {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  padding: 20px 10px;
+  border-radius: 7px;
+  background: #fff !important;
+}
+
+.error {
+  border-color: red;
+}
+.custom-margin {
+  margin-inline-end: 48px !important;
+}
+label {
+  font-size: 14px;
+}
+.custom-margin-street {
+  margin-inline-end: 32px !important;
+}
+.custom-margin-email {
+  margin-inline-end: 35px !important;
+}
+.custom-margin-phone {
+  margin-inline-end: 15px !important;
+}
+.custom-margin-error {
+  margin-inline-start: 80px !important;
+  font-size: 14px;
+}
+.custom-star {
+  padding-inline-start: 2px;
+  padding-inline-end: 5px;
+}
+
+form {
+  padding: 50px 20px;
+}
+.form-control {
+  height: 40px;
+}
+input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(255, 255, 226);
+}
+
+.container-content {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  padding: 20px 10px;
+  border-radius: 7px;
+  background: #fff !important;
+}
+
+.container input,
+.container button {
+  box-shadow: none;
+}
+.container input {
+  border: 1px solid #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.buttons {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+button {
+  text-transform: uppercase;
+}
+.container .btn {
+  border: 0;
+  padding: 7px 15px;
+  border-radius: 5px;
+  color: #fff;
+  margin-inline-start: 10px;
+}
+.container .add-btn {
+  background-color: #085694;
+}
+.container .disable-btn {
+  background-color: #0f4447;
+}
+.container .enable-btn {
+  background-color: #388488;
+}
+
+

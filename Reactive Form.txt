@@ -1,0 +1,194 @@
+
+								(if Form Control)
+
+	**FormControl: Tracks the value and validation status of an individual form control. **
+*firstly see app.module know about  or import ReactiveFormsModule or not.
+
+	*then: go to .ts and declare all controls you want:-
+		name : new FormControl();
+		email: new FormControl();
+		address: new FormControl();
+
+	*then: go to .html and declare your form with inputs:-
+		<label for="name">Name</label>
+            	<input type="text" id="name" class="form-control" [formControl]="name" />
+		{{name.value}}
+
+	( *Remember that: "form Control Directive" is responsible for the relate .ts by .html ) 
+
+	*if you want to listen changing in form control in .ts:
+		constructor() {
+    			this.name.valueChanges.subscribe((changes)=>{
+      				console.log('Changes is: ',changes);
+    			})
+ 		}
+
+		*how to set value to form control:
+ 			updateName() {
+    				this.name.setValue('Eslam Afify Barakat');
+ 			}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+								(if Form Group "DIRECTIVE")
+
+	** FormControlName: Syncs a FormControl in an existing FormGroup to a form control element by name.**
+	*firstly see app.module know about  or import ReactiveFormsModule or not.
+
+	*then: go to .ts and declare all controls you want:-
+		profileForm = new FormGroup({
+    		firstName: new FormControl(),
+    		lastName: new FormControl()
+ 		 })
+
+	*then: go to .html and declare your form with inputs:-
+		<form class="text-center pt-5" [formGroup]="profileForm">
+  			<label>
+   			 	First Name:
+    				<input type="text" formControlName="firstName">
+  			</label>
+  			<br>
+  			<br>
+ 			 <label>
+    				Last Name:
+    				<input type="text" formControlName="lastName">
+  			</label>
+		</form>
+
+	*if you want to listen changing in form control in .ts:
+		constructor() {
+    			this.name.valueChanges.subscribe((changes)=>{
+      				console.log('Changes is: ',changes);
+    			})
+ 		}
+
+		*how to set value to form control:
+ 			updateName() {
+    				this.name.setValue('Eslam Afify Barakat');
+ 			}
+
+
+	*if you want to listen changing in form control in .ts:
+		constructor() {
+    			this.profileForm.get("firstname")?.valueChanges.subscribe((changes)=>{
+      				console.log('Changes is: ',changes);
+    			})
+ 		}
+
+		*how to set value to form control:
+ 			updateName() {
+    				this.profileForm.get("firstname")?.setValue('Eslam Afify Barakat');
+ 			}
+
+............................................................................................................................
+				(?the difference between SetValue & PatchValue?)
+  	//SetValue must set all states for formGroup
+	updateFormWithSetValue() {
+    		this.profileForm.reset();
+    		this.profileForm.setValue({
+      		firstName: 'Eslam',
+      		lastName: 'Afify',
+      		address: {
+        		city: 'Sirs-Eliaan',
+        		street: '123'
+      			}
+    		})
+  	}
+   	//PatchValue must set all states for formGroup is most popular
+  	updateFormWithPatchValue() {
+    		this.profileForm.reset();
+    		this.profileForm.patchValue({
+      		firstName: 'Eslam',
+      		address: {
+        		city: 'Sirs-Eliaan'
+      			}
+    		})
+  	}
+...............................................................................................................................
+								(if Form Bulider)		
+
+
+	** FormControlName: Syncs a FormControl in an existing FormGroup to a form control element by name.**
+	*firstly see app.module know about  or import ReactiveFormsModule or not.
+
+	*then: go to .ts and declare all controls you want:-
+		profileForm: FormGroup;
+  		constructor(private fb: FormBuilder) {
+
+    			this.profileForm = this.fb.group({
+      				firstName: '',
+      				lastName: '',
+      				address: this.fb.group({
+        			city: '',
+        			street: ''
+      					})
+
+    				})
+  			}
+
+	*then: go to .html and declare your form with inputs:-
+		<form class="text-center pt-5" [formGroup]="profileForm">
+  			<label>
+   			 	First Name:
+    				<input type="text" formControlName="firstName">
+  			</label>
+  			<br>
+  			<br>
+ 			 <label>
+    				Last Name:
+    				<input type="text" formControlName="lastName">
+  			</label>
+		</form>
+
+	*if you want to listen changing in form control in .ts:
+		constructor() {
+    			this.name.valueChanges.subscribe((changes)=>{
+      				console.log('Changes is: ',changes);
+    			})
+ 		}
+
+		*how to set value to form control:
+ 			updateName() {
+    				this.name.setValue('Eslam Afify Barakat');
+ 			}
+
+
+	*if you want to listen changing in form control in .ts:
+		constructor() {
+    			this.profileForm.get("firstname")?.valueChanges.subscribe((changes)=>{
+      				console.log('Changes is: ',changes);
+    			})
+ 		}
+
+		*how to set value to form control:
+ 			updateName() {
+    				this.profileForm.get("firstname")?.setValue('Eslam Afify Barakat');
+ 			}
+
+............................................................................................................................
+				[if you want to set vlaidator required or other if (condition)]
+
+		constructor(private fb: FormBuilder) {
+
+    			this.profileForm = this.fb.group({
+      						name: ['']
+  						});
+						this.formControlValueChanged();
+					}
+
+
+		formControlValueChanged() {
+    			const phoneControl = this.productForm?.get('purchase_price');
+    			if (this.userTypeNumer !== 6) {
+      				phoneControl?.setValidators([Validators.required]);
+    				}
+    			else if (this.userTypeNumer === 6) {
+      				phoneControl?.clearValidators();
+    				}
+    			phoneControl?.updateValueAndValidity();
+  			}
+
+ 		onSubmit() {
+    			this.formControlValueChanged();
+		}
+   

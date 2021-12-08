@@ -1,0 +1,245 @@
+<div class="container my-5">
+  <div class="container-content">
+    <h3 class="text-center fw-bold pt-5 pb-4 custom-h-shadow text-uppercase">
+      {{ title }}
+    </h3>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="row mx-1 d-flex mb-3" formGroupName="fullName">
+        <div class="col">
+          <div class="d-flex">
+            <label for="firstName" class="form-label fw-bold my-2"
+              ><span class="mx-1"
+                >FirstName<span
+                  *ngIf="firstName?.errors"
+                  class="text-danger custom-star"
+                  >*</span
+                ></span
+              ></label
+            >
+            <input
+              id="firstName"
+              type="text"
+              class="form-control"
+              placeholder="first name"
+              name="firstName"
+              formControlName="firstName"
+              [ngClass]="{
+                error:
+                  firstName?.invalid && (firstName?.dirty || firstName?.touched)
+              }"
+            />
+          </div>
+          <div
+            *ngIf="
+              firstName?.invalid && (firstName?.dirty || firstName?.touched)
+            "
+            class="alert text-danger custom-margin-error"
+          >
+            <span *ngIf="firstName?.errors?.['required']">
+              first name is required
+            </span>
+            <span *ngIf="firstName?.errors?.['minlength']">
+              first name must be at least 3 characters long
+            </span>
+            <span *ngIf="firstName?.errors?.['maxlength']">
+              first name must be at most 25 characters long
+            </span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex">
+            <label for="lastName" class="form-label fw-bold my-2"
+              ><span class="mx-1"
+                >LastName<span
+                  *ngIf="lastName?.errors"
+                  class="text-danger custom-star"
+                  >*</span
+                ></span
+              ></label
+            >
+            <input
+              id="lastName"
+              type="text"
+              class="form-control"
+              placeholder="last name"
+              name="lastName"
+              formControlName="lastName"
+              [ngClass]="{
+                error:
+                  lastName?.invalid && (lastName?.dirty || lastName?.touched)
+              }"
+            />
+          </div>
+          <div
+            *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+            class="alert text-danger custom-margin-error"
+          >
+            <div *ngIf="lastName?.errors?.['required']">
+              last name is required
+            </div>
+            <div *ngIf="lastName?.errors?.['minlength']">
+              last name must be at least 3 characters long
+            </div>
+            <div *ngIf="lastName?.errors?.['maxlength']">
+              last name must be at most 25 characters long
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mx-1 d-flex mb-3" formGroupName="address">
+        <div class="col">
+          <div class="d-flex">
+            <label for="city" class="form-label fw-bold my-2"
+              ><span class="mx-1 custom-margin"
+                >City<span *ngIf="city?.errors" class="text-danger custom-star"
+                  >*</span
+                ></span
+              ></label
+            >
+            <input
+              id="city"
+              type="text"
+              class="form-control"
+              placeholder="city"
+              name="city"
+              formControlName="city"
+              [ngClass]="{
+                error: city?.invalid && (city?.dirty || city?.touched)
+              }"
+            />
+          </div>
+          <div
+            *ngIf="city?.invalid && (city?.dirty || city?.touched)"
+            class="alert text-danger custom-margin-error"
+          >
+            <div *ngIf="city?.errors?.['required']">city name is required</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="d-flex">
+            <label for="street" class="form-label fw-bold my-2"
+              ><span class="mx-1 custom-margin-street"
+                >Street<span
+                  *ngIf="street?.errors"
+                  class="text-danger custom-star"
+                  >*</span
+                ></span
+              ></label
+            >
+            <input
+              id="street"
+              type="text"
+              class="form-control"
+              placeholder="street"
+              name="street"
+              formControlName="street"
+              [ngClass]="{
+                error: street?.invalid && (street?.dirty || street?.touched)
+              }"
+            />
+          </div>
+          <div
+            *ngIf="street?.invalid && (street?.dirty || street?.touched)"
+            class="alert text-danger custom-margin-error"
+          >
+            <div *ngIf="street?.errors?.['required']">street is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="mx-2 mb-3">
+        <div class="d-flex">
+          <label for="email" class="form-label fw-bold my-2"
+            ><span class="mx-1 custom-margin-email"
+              >Email<span *ngIf="email?.errors" class="text-danger custom-star"
+                >*</span
+              ></span
+            ></label
+          >
+          <input
+            type="text"
+            class="form-control mx-2"
+            id="email"
+            placeholder="Enter email"
+            name="email"
+            formControlName="email"
+            [ngClass]="{
+              error: email?.invalid && (email?.dirty || email?.touched)
+            }"
+          />
+        </div>
+        <div
+          *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+          class="alert text-danger custom-margin-error"
+        >
+          <div *ngIf="email?.errors?.['required']">email is required*</div>
+          <div *ngIf="email?.errors?.['pattern']">
+            email must be with pattern
+            email[email_pattern/email.pattern]@email.xyz[xyz321]*
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <div class="d-flex">
+          <label for="email" class="form-label fw-bold my-2"
+            ><span class="mx-1"
+              >MobileNumber<span
+                *ngIf="mobileNumber?.errors"
+                class="text-danger custom-star"
+                >*</span
+              ></span
+            ></label
+          >
+          <span class="my-2 fw-bold px-1">+20</span>
+          <input
+            type="text"
+            class="form-control custom-margin-phone"
+            id="mobileNumber"
+            placeholder="mobile number"
+            name="mobileNumber"
+            formControlName="mobileNumber"
+            [ngClass]="{
+              error:
+                mobileNumber?.invalid &&
+                (mobileNumber?.dirty || mobileNumber?.touched)
+            }"
+          />
+        </div>
+        <div
+          *ngIf="
+            mobileNumber?.invalid &&
+            (mobileNumber?.dirty || mobileNumber?.touched)
+          "
+          class="alert text-danger custom-margin-error"
+        >
+          <div *ngIf="mobileNumber?.errors?.['required']">
+            mobile number is required
+          </div>
+          <div *ngIf="mobileNumber?.errors?.['pattern']">
+            mobile number must be with pattern 1234567890
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="btn enable-btn">Submit</button>
+        <button type="button" class="btn disable-btn mx-2" (click)="reset()">
+          Rset
+        </button>
+      </div>
+    </form>
+
+    <hr class="fw-bold" />
+
+    <figure class="text-center">
+      <blockquote class="blockquote">
+        <p class="fw-bold">Status Form</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        {{ profileForm.status }}
+      </figcaption>
+    </figure>
+
+    <hr class="fw-bold" />
+  </div>
+</div>

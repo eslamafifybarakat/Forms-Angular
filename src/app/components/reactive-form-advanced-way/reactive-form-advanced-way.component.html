@@ -1,0 +1,187 @@
+<div class="container my-5">
+  <div class="container-content">
+    <h3 class="text-center fw-bold pt-5 pb-4 custom-h-shadow text-uppercase">
+      {{ title }}
+    </h3>
+
+    <form [formGroup]="myform" (ngSubmit)="onSubmit()">
+      <div class="mb-3 mt-3">
+        <div class="d-flex">
+          <label for="firstName" class="form-label fw-bold my-2"
+            ><span class="mx-1"
+              >FirstName<span
+                *ngIf="firstName?.errors"
+                class="text-danger custom-star"
+                >*</span
+              ></span
+            ></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            placeholder="first name"
+            formControlName="firstName"
+            [ngClass]="{
+              error:
+                firstName?.invalid && (firstName?.dirty || firstName?.touched)
+            }"
+          />
+        </div>
+        <div
+          *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+          class="alert text-danger custom-margin-error"
+        >
+          <div *ngIf="firstName?.errors?.required" class="">
+            First Name is required
+          </div>
+          <div *ngIf="firstName?.errors?.minlength" class="">
+            First Name must be at least 3 characters long
+          </div>
+          <div *ngIf="firstName?.errors?.maxlength" class="">
+            First Name must be at most 25 characters long
+          </div>
+          <div *ngIf="firstName?.errors?.invalidName" class="alert text-danger">
+            First Name can't inculde number*
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <div class="d-flex">
+          <label for="lastName" class="form-label fw-bold my-2"
+            ><span class="mx-1"
+              >LastName<span
+                *ngIf="lastName?.errors"
+                class="text-danger custom-star"
+                >*</span
+              ></span
+            ></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            placeholder="last name"
+            formControlName="lastName"
+            [ngClass]="{
+              error: lastName?.invalid && (lastName?.dirty || lastName?.touched)
+            }"
+          />
+        </div>
+        <div
+          *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+          class="alert text-danger custom-margin-error"
+        >
+          <div *ngIf="lastName?.errors?.required">Last Name is required</div>
+          <div *ngIf="lastName?.errors?.minlength">
+            Last Name must be at least 3 characters long
+          </div>
+          <div *ngIf="lastName?.errors?.maxlength">
+            Last Name must be at most 25 characters long
+          </div>
+          <div *ngIf="lastName?.errors?.invalidName">
+            Last Name can't inculde number
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <div class="d-flex">
+          <label for="password" class="form-label fw-bold my-2"
+            ><span class="mx-1"
+              >Password<span
+                *ngIf="password?.errors"
+                class="text-danger custom-star"
+                >*</span
+              ></span
+            ></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="password"
+            placeholder="password"
+            formControlName="password"
+            [ngClass]="{
+              error: password?.invalid && (password?.dirty || password?.touched)
+            }"
+          />
+        </div>
+        <div
+          *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+          class="alert text-danger custom-margin-error"
+        >
+          <div *ngIf="password?.errors?.required">Password is required</div>
+          <div *ngIf="password?.errors?.invalidPassword">
+            Password must be at least 9 characters which contain at least [one
+            uppercase, one lowercase letter, one number and one special
+            character]
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <div class="d-flex">
+          <label for="confirmPassword" class="form-label fw-bold my-2"
+            ><span class="mx-1"
+              >ConfirmPassword<span
+                *ngIf="confirmPassword?.errors"
+                class="text-danger custom-star"
+                >*</span
+              ></span
+            ></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="confirmPassword"
+            placeholder="confirm password"
+            formControlName="confirmPassword"
+            [ngClass]="{
+              error:
+                confirmPassword?.invalid &&
+                (confirmPassword?.dirty || confirmPassword?.touched)
+            }"
+          />
+        </div>
+        <div
+          *ngIf="
+            confirmPassword?.invalid &&
+            (confirmPassword?.dirty || confirmPassword?.touched)
+          "
+          class="alert text-danger custom-margin-error"
+        >
+          <div *ngIf="confirmPassword?.errors?.required">
+            Confirm Password is required
+          </div>
+          <div *ngIf="password?.errors?.invalidPassword">
+            Confirm Password must be at least 9 characters which contain at
+            least [one uppercase, one lowercase letter, one number and one
+            special character]
+          </div>
+          <div
+            *ngIf="confirmPassword?.errors?.wrongValues"
+            class="alert text-danger"
+          >
+            Confirm Password is validatePasswords
+          </div>
+        </div>
+        <!-- <ng-container *ngIf="matchPaaswords">
+        <span class="alert text-danger">
+          Confirm Password must match Password*
+        </span>
+      </ng-container> -->
+        <div
+          *ngIf="myform?.errors?.passwordsNotMatch"
+          class="alert text-danger"
+        >
+          Confirm Password must match Password
+        </div>
+      </div>
+      <div class="buttons">
+        <button type="submit" class="btn enable-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

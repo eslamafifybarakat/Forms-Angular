@@ -1,0 +1,53 @@
+1.Template Drieven:
+	-for simple form like login or signup
+	-setup with directives
+	-data model has no structure
+	-validation is a directives
+
+	-example:
+		*import at app.module.ts=> FormsModule
+		*at app.component.ts => favoriteColor="";
+		*at html use [(ngModel)] to access value =>
+		 <input
+            	  type="text"
+		 [(ngModel)]=favoriteColor>
+
+	-Data Flow: Every form element of the template-driven forms is linked to a directive to manage the form model internally.
+
+	*Link comparision:https://www.javatpoint.com/data-flow-in-angular-7-forms
+
+	-Here the user has to change the input value from red to blue.
+
+		First, the user types Blue into the input element.
+		Then, the input element emits an "input" event having the value Blue.
+		Then, the control value accessor attached to the input triggers the setValue() method on the FormControl instance.
+		After the setValue() method, the FormControl instance emits the new value through the valueChanges observable.
+		Subscribers to the valueChanges observable receive the new value.
+		After that, the control value accessor also calls the NgModel.viewToModelUpdate() method which emits an ngModelChange event.
+		Here, component template uses two-way data binding for the favoriteColor property, the favoriteColor property in the component is updated to the value emitted by the ngModelChange event (Blue).
+
+2.Reactive Forms OR Model Drieven Forms:
+	-to make complex forms with validation and customiziation
+	-bulid in side class and it's validation is a functions
+
+	-example:
+		*import at app.module.ts=> ReactiveFormsModule
+		*at app.component.ts => favoriteColorControl= new FormControl();
+		*at html use formControlName="favoriteColorControl" to access value =>
+		 <input
+            	  type="text"
+		 formControlName=favoriteColor>
+
+
+	-Data Flow:
+
+		*Link comparision:https://www.javatpoint.com/data-flow-in-angular-7-forms
+
+		-In Reactive form, each form element in the view is directly linked to a form model (FormControl instance), 
+		* means: when i write any char in input box 
+		  the form input element emits an "input" event with the latest typed value
+		* Then the control value accessor(who listen for events on the form input element) immediately relays the new value to the FormControl instance
+		* After receiving the value theFormControl instance emits the new value through the valueChanges observable
+		* Any subscribers to the valueChanges observable receive the new value
+
+		(control value accessor: moves latest data from input to FormControl instance)

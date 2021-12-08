@@ -1,0 +1,38 @@
+<div class="form-container">
+  <form [formGroup]="myform">
+    <h6 class="fw-bold">Async Validator</h6>
+    <div class="form-body">
+      <div class="form-control">
+        Username *
+        <ng-container *ngIf="username.dirty || username.touched">
+          <span *ngIf="username.hasError('required')" class="form-message form-message--error">This field is
+            required</span>
+          <span *ngIf="username.hasError('usernameExists')" class="form-message form-message--error">This user name is
+            exist</span>
+          <span *ngIf="username.valid && !username.pending" class="form-message form-message--success">Wow nice user
+            name</span>
+        </ng-container>
+        <input type="text" formControlName="username" placeholder="your username">
+        <div class="icon-container">
+          <i [ngClass]="{'loader': username?.pending}"></i>
+        </div>
+      </div>
+      <!-- Lazy Check -->
+      <div class="form-control">
+        Lazy Username *
+        <ng-container *ngIf="lazyUsername.dirty || lazyUsername.touched">
+          <span *ngIf="lazyUsername.hasError('required')" class="form-message form-message--error">This field is
+            required</span>
+          <span *ngIf="lazyUsername.hasError('usernameExists')" class="form-message form-message--error">This user name is
+            exist</span>
+          <span *ngIf="lazyUsername.valid && !lazyUsername.pending" class="form-message form-message--success">Wow nice user
+            name</span>
+        </ng-container>
+        <input type="text" formControlName="lazyUsername" placeholder="your lazyUsername">
+        <div class="icon-container">
+          <i [ngClass]="{'loader': lazyUsername?.pending}"></i>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

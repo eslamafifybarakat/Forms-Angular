@@ -1,0 +1,56 @@
+.content-container {
+  max-width: 100%;
+}
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  height: 100%;
+  border-radius: 0px 7px 7px 0;
+}
+.sidebar .navbar-brand {
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  margin-bottom: 20px;
+  background: #388488;
+}
+.sidebar .div-brand {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin: 0  0 30px 0 !important;
+  padding: 30px 0 !important;
+  border-radius: 0 0 5px 0;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  padding: 15px 7px;
+  // text-align: center;
+  font-weight: bold;
+  padding-inline-start: 30px;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background: #388488a1;
+  color: white;
+  border-radius: 7px;
+
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: rgb(221, 221, 221);
+  color: white;
+  border-radius: 14px;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  height: auto;
+  min-width: 100%;
+}

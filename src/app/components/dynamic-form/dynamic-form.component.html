@@ -1,0 +1,135 @@
+<div class="container my-5">
+  <div class="container-content">
+  <form [formGroup]="schoolForm">
+
+    <h3 class="text-center fw-bold pb-4 text-uppercase">
+      Dynamic Validator
+    </h3>
+    <div class="form-body">
+      <div class="form-control">
+        School Name *
+        <input
+          type="text"
+          placeholder="School Name"
+          formControlName="schoolName"
+        />
+      </div>
+      <div class="form-control">
+        Total Students Count *
+        <input
+          type="text"
+          placeholder="Total Students Count"
+          formControlName="totalStudentsCount"
+        />
+      </div>
+      <!-- Start Classes Container -->
+      <div
+        class="class-rooms"
+        formArrayName="classRooms"
+        *ngIf="getClassRooms().controls.length"
+      >
+        <ng-container
+          *ngFor="
+            let classRoom of getClassRooms().controls;
+            let classRoomIndex = index
+          "
+        >
+          <!-- Start Class Room -->
+          <div class="class-rooms__room" [formGroupName]="classRoomIndex">
+            <div class="form-control">
+              Students Count
+              <input
+                type="text"
+                placeholder="Total Students Count"
+                formControlName="studentsCount"
+              />
+            </div>
+            <div class="form-control">
+              Class Room Number
+              <input
+                type="text"
+                placeholder="Class Room Number"
+                formControlName="classRoomNumber"
+              />
+            </div>
+            <!-- Start Subjects -->
+            <div class="class-rooms__room--subjects" formArrayName="subjects">
+              <ng-container
+                *ngFor="
+                  let Subject of getClassRoomSubjects(classRoomIndex).controls;
+                  let subjectIndex = index
+                "
+              >
+                <!-- Start Subject -->
+                <div class="subject" [formGroupName]="subjectIndex">
+                  <div class="form-control">
+                    Subject Name
+                    <input
+                      type="text"
+                      placeholder="Subject Name"
+                      formControlName="subjectName"
+                    />
+                  </div>
+                  <div class="form-control">
+                    Students Count
+                    <input
+                      type="text"
+                      placeholder="Students Count"
+                      formControlName="studentsCount"
+                    />
+                  </div>
+                  <button
+                    class="btn delete-btn"
+                    type="button"
+                    (click)="
+                      deleteClassRoomSubjects(classRoomIndex, subjectIndex)
+                    "
+                  >
+                    Delete Subject
+                  </button>
+                </div>
+                <!-- Start Subject -->
+              </ng-container>
+            </div>
+            <!-- End Subjects -->
+            <button
+              class="btn delete-btn"
+              type="button"
+              (click)="deleteClassRoom(classRoomIndex)"
+            >
+              Delete Class Room
+            </button>
+            <button
+              class="btn add-btn"
+              type="button"
+              (click)="addClassRoomSubjects(classRoomIndex)"
+            >
+              Add Subject
+            </button>
+          </div>
+          <!-- End Class Room -->
+        </ng-container>
+      </div>
+      <!-- End Classes Container -->
+      <button class="btn add-btn" type="button" (click)="addClassRoom()">
+        Add Class Room
+      </button>
+      <button class="btn update-btn" type="button" (click)="updateData()">
+        Update Data
+      </button>
+      <button class="btn rest-btn" type="button" (click)="restForm()">
+        Rest
+      </button>
+      <button class="btn disable-btn" type="button" (click)="disable()">
+        Disable School Name
+      </button>
+      <button class="btn enable-btn" type="button" (click)="enable()">
+        Enable School Name
+      </button>
+      <hr />
+      <!-- {{ schoolForm.value | json }} -->
+      {{ schoolForm.getRawValue() | json }}
+    </div>
+  </form>
+</div>
+</div>
