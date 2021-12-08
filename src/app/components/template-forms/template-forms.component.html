@@ -1,25 +1,81 @@
-<h3 class="text-center pt-5">Template Form</h3>
-<div class="text-center p-3 m-5 border rounded border-success px-5">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]=email>
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
+<div class="container my-5">
+  <div class="container-content">
+    <h3 class="text-center fw-bold pt-5 pb-4 custom-h-shadow text-uppercase">
+      Template Driven Form
+    </h3>
 
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]=password>
-  </div>
+    <div class="content-form-group my-5 pb-5">
+      <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+        <!-- <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)"> -->
+        <div class="form-body" ngModelGroup="data">
+          <div class="mx-2 d-flex mb-3">
+            <label for="fname" class="form-label fw-bold my-2 mx-1"
+              ><span class="mx-1">First&nbsp;Name</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="fname"
+              placeholder=" first name"
+              name="fname"
+              [ngModel]="myFirstName"
+              (ngModelChange)="myFirstName = $event"
+              required
+            />
+          </div>
+          <div class="mx-2 d-flex mb-3">
+            <label for="lname" class="form-label fw-bold my-2 mx-1"
+              ><span class="mx-1">Last&nbsp;Name</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="lname"
+              placeholder=" last name"
+              name="lname"
+              [(ngModel)]="myLastName"
+            />
+          </div>
+          <div class="mx-2 d-flex mb-3">
+            <label for="age" class="form-label fw-bold my-2 mx-1"
+              ><span class="mx-1 custom-margin">Age</span>
+            </label>
+            <!-- get input with ref -->
+            <input
+              type="number"
+              class="form-control"
+              id="age"
+              placeholder="0"
+              name="age"
+              ngModel
+              #age="ngModel"
+              required
+            />
+          </div>
+          <div class="buttons">
+            <button type="submit" class="btn enable-btn">Submit</button>
+            <button type="button" class="btn disable-btn mx-2">
+              Rset
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
 
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]=checkbox>
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
+    <hr />
+    <div class="text-center py-1">Status: {{ myForm?.status | json }}</div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</div>
-<div class="text-center p-3 m-5 border rounded border-success">
-  <p class="text-primary">Email : <span class="text-info">{{email}}</span></p>
-  <p class="text-primary">Password : <span class="text-info">{{password}}</span></p>
-  <p class="text-primary">Checkbox : <span class="text-info">{{checkbox}}</span></p>
+    <div class="text-center py-5">{{ myForm?.value | json }}</div>
+    <div class="text-center">
+      data[ 'first name' ]: {{ myForm?.value?.data["fname"] | json }}
+    </div>
+    <div class="text-center">
+      data[ 'last name' ]: {{ myForm?.value?.data["lname"] | json }}
+    </div>
+    <!-- get input with ref -->
+    <div class="text-center">
+      data[ 'age' ]: {{ age?.value | json }} data[ 'age' ]:
+      {{ age?.errors?.required | json }}
+    </div>
+  </div>
 </div>
